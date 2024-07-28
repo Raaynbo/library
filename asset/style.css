@@ -3,7 +3,48 @@
 	padding: 0;
 }
 
+
+body {
+	background-color: #f9f9f9;
+	display: grid;
+	height: 100vh;
+	grid-template: 1fr 1fr 1fr 1fr/ 1fr 3fr 3fr 3fr;
+	grid-template-areas:
+		"side main main main "
+		"side main main main "
+		"side main main main "
+		"side main main main "
+}
+
 span {
 	font-size: 32px;
 	font-weight: 800;
+}
+
+.card {
+	background-color: white;
+	border-radius: 1rem;
+	box-shadow: 0.1rem 0.1rem 5px #e0dede8a;
+	padding: 0.5rem;
+	border-left: 0.2rem solid var(--light-color);
+	display: grid;
+	grid-template-rows: 1fr 3fr 1fr;
+}
+
+.main {
+	display: grid;
+	grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
+	margin: 1rem;
+	gap: 1rem;
+}
+
+
+#main {
+	background-color: #f9f9f9a6;
+	grid-area: main;
+}
+
+#side {
+	background-color: blue;
+	grid-area: side;
 }
