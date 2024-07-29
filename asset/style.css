@@ -48,3 +48,19 @@ span {
 	background-color: blue;
 	grid-area: side;
 }
+
+.modal {
+	position: absolute;
+	top: 15%;
+	left: 5%;
+	width: 90%;
+	height: 70%;
+	border: 0px;
+	background-color: white;
+}
+
+.dialog {
+	position: absolute;
+	top: 15%;
+	left: 3rem;
+}
