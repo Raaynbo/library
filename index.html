@@ -10,16 +10,24 @@
 </head>
 
 <body>
-
-	<div class="main" id="main">
+	<div class="cardzone" id="cardzone"></div>
+	<div class="infozone" id="infozone">
+		<span class="title_detail">detail</span>
+		<span class="author_detail">detail</span>
+		<span class="id" hidden></span>
 	</div>
-	<div class="side" id="side">
+	<div class="action_btn" id="side">
 		<span class="button" onclick="openModal()">+</span>
 	</div>
 	<dialog class="modal">
 		<form method="dialog">
-			<span>sahdakhd</span>
-			<button>OK</button>
+			<div class="form_content">
+				<span class="form_title">ADD BOOK</span>
+				<label for="title">some text <input type="text" id="title_input" required></label>
+				<label for="author">some text <input type="text" id="author_input" required></label>
+				<label for="desc">some text <input type="text" id="desc_input" required></label>
+			</div>
+			<input type="submit" id="validate">
 		</form>
 	</dialog>
 

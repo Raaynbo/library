@@ -35,3 +35,26 @@ use the found id to identify position of the book inside the library array
 then we splice the library array using the info and remove the card from the DOM
 
 (it works, I just don't like this line to remove the DOM element 		`e.target.parentNode.parentNode.remove();`) 
+
+
+Next step is to made the modal to add a new book, I already made a button inside the side bar, on click it opens the modal. Last step is to make a form inside then grab the whole inputed data when user click on ADD button. 
+
+What could be done? when "ADD" is pressed we first perform a form validation input, if data are correct, close the form and add the book, otherwise, highlight field uncompleted or incorrect
+
+
+# 2024-08-01 - 12.49am
+
+I finished the book form, it isn't stylized but working. I decided to remove the sidebar because I don't know how to use the space in it.
+
+Instead I made a simple action button in the bottom right of the screen. It opens the form.
+
+Next: 
+- I want to make css for form, change book definition to store pages number and read status. and add a close button inside it. 
+
+- I want to change card tile, todisplay a resume of the data for a book. need a tag zone  
+- I want to add a click action opening a detail modal for selected book.
+
+# 2024-08-01 - 1.40am
+
+I made a detail zone to dissplay book details in it. it toggles on click and has a simple animation. It also disappear if the book card is deleted
+
