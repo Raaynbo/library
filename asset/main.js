@@ -33,22 +33,38 @@ function createCard(book){
 		const card_content = document.createElement("div");
 		const card_action_container = document.createElement("div");
 		const card_action1 = document.createElement("span");
-		card_title.textContent = book.name;
-		card_action1.textContent = "Delete";
+		card_title.textContent = book.name + " - " + book.author;
+		card_content.textContent = book.desc;
 		card_title.className = "card_title";
 		card.className = "card";
 		card_content.className = "card_content";
 		card_action1.className = "card_action";
 		card_action_container.className = "card_action_container";
-		
-	card_action1.addEventListener("click", (e) => {
 
-		const removedid = e.target.parentNode.parentNode.id;
-		e.target.parentNode.parentNode.remove();
-		let elementToDelete = library.filter((book) => book.id == removedid)
+
+		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+
+		svg.setAttribute("aria-hidden","true");
+		svg.setAttribute('viewbox', '0 0 24 24');
+		svg.setAttribute('width', '24px');
+		svg.setAttribute('height', '24px');
+
+
+		path.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z');
+		path.setAttribute('fill', '#2962ff');
+
+		svg.appendChild(path);
+		card_action1.appendChild(svg);
+		
+	svg.addEventListener("click", (e) => {
+		const toRemove = findParent(card, e.target);
+		toRemove.remove();
+		let elementToDelete = library.filter((book) => book.id == toRemove.id)
 		let indexOfDeletel = library.indexOf(elementToDelete[0]) 
 		library.splice(indexOfDeletel,1);
-		displayDetails();
+		console.log(library);
+		closeDetails();
 	});
 		card.setAttribute("id", book.id);
 		card_action_container.appendChild(card_action1);
@@ -59,7 +75,7 @@ function createCard(book){
 		cardzone.appendChild(card);
 
 	card.addEventListener("click", (event) => {
-		if(event.target == card_action1){
+		if(event.target == card_action1 || event.target == svg|| event.target == path){
 			return false;
 		}
 		let temp = library.find(book => {return book.id == card.id});
@@ -76,6 +92,15 @@ function createCard(book){
 			id_detail.textContent = "";
 		}
 	});
+}
+
+
+function findParent(targetEl, childEl){
+	let actualEl = childEl;
+	while(actualEl != targetEl){
+		actualEl = actualEl.parentNode;
+	}
+	return actualEl;
 }
 
 function closeDetails(){
@@ -107,8 +132,8 @@ function openModal(){
 
 function form_validation(e){
 	const title_in = e.target.form[0].value;	
-	const desc_in = e.target.form[1].value;	
-	const author_in = e.target.form[2].value;
+	const desc_in = e.target.form[2].value;	
+	const author_in = e.target.form[1].value;
 	if ( title_in == "" && author_in == "" && desc_in == ""){
 		console.log("fill the form firsrt")
 		return true;
