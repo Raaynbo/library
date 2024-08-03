@@ -10,10 +10,12 @@ const id_detail = document.querySelector(".id");
 
 addbtn.addEventListener("click", (event) => form_validation(event)); 
 
-function Book(name, author, desc){
+function Book(name, author, desc, pagenum, read){
 	this.name = name;
 	this.author= author;
 	this.desc = desc;
+	this.page = pagenum;
+	this.isRead = read;
 	this.id = index;
 	index++;
 }
@@ -31,12 +33,18 @@ function createCard(book){
 		const card = document.createElement("div");
 		const card_title = document.createElement("span")
 		const card_content = document.createElement("div");
+		const bookpage = document.createElement("div");
+		const bookdesc = document.createElement("div");
 		const card_action_container = document.createElement("div");
 		const card_action1 = document.createElement("span");
 		card_title.textContent = book.name + " - " + book.author;
-		card_content.textContent = book.desc;
+		bookdesc.textContent = book.desc;
+		bookpage.textContent = "total pages: " + book.page;
 		card_title.className = "card_title";
 		card.className = "card";
+		if (book.isRead === true){
+			card.classList.add("read");
+		}
 		card_content.className = "card_content";
 		card_action1.className = "card_action";
 		card_action_container.className = "card_action_container";
@@ -57,7 +65,7 @@ function createCard(book){
 		svg.appendChild(path);
 		card_action1.appendChild(svg);
 		
-	svg.addEventListener("click", (e) => {
+	card_action1.addEventListener("click", (e) => {
 		const toRemove = findParent(card, e.target);
 		toRemove.remove();
 		let elementToDelete = library.filter((book) => book.id == toRemove.id)
@@ -66,6 +74,9 @@ function createCard(book){
 		console.log(library);
 		closeDetails();
 	});
+
+		card_content.appendChild(bookdesc);
+		card_content.appendChild(bookpage);
 		card.setAttribute("id", book.id);
 		card_action_container.appendChild(card_action1);
 		card.appendChild(card_title);
@@ -134,17 +145,21 @@ function form_validation(e){
 	const title_in = e.target.form[0].value;	
 	const desc_in = e.target.form[2].value;	
 	const author_in = e.target.form[1].value;
-	if ( title_in == "" && author_in == "" && desc_in == ""){
+	const page_in = e.target.form[3].value;
+	const read_in = e.target.form[4].checked;
+	const form = document.querySelector("form");
+	const modal = document.querySelector("dialog");
+	if ( title_in == "" && author_in == "" && desc_in == "" && page_in ==""){
 		console.log("fill the form firsrt")
 		return true;
 	}
-	addToLibrary(new Book(title_in, author_in, desc_in));
-	const modal = document.querySelector("dialog");
+	addToLibrary(new Book(title_in, author_in, desc_in, page_in, read_in));
 	modal.close();
-	const form = document.querySelector("form");
 	form.reset();
 	e.preventDefault();
 }
 
-const book1 = new Book("LOTR", "Tolkien", "Men discussing about a ring");
+const book1 = new Book("LOTR", "Tolkien", "Men discussing about a ring", 898, true);
+const book2 = new Book("LOTR2", "Tolkien", "Men discussing about a ring", 1000, false);
 addToLibrary(book1);
+addToLibrary(book2);
