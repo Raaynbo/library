@@ -58,3 +58,9 @@ Next:
 
 I made a detail zone to dissplay book details in it. it toggles on click and has a simple animation. It also disappear if the book card is deleted
 
+# 2024-08-03 - 11.55pm
+
+modified card creation and delete event, Had to make a function to find a specific Parent node (here it was the card) 
+modified book definition to handle tot_page and reading status
+whenever a book is read the associated card will have a green border on the left side 
+UPDATE : while writing this, I found out I do not need to find the parent Node, since the card creation and EventListener are done in the same scope for now

@@ -66,9 +66,8 @@ function createCard(book){
 		card_action1.appendChild(svg);
 		
 	card_action1.addEventListener("click", (e) => {
-		const toRemove = findParent(card, e.target);
-		toRemove.remove();
-		let elementToDelete = library.filter((book) => book.id == toRemove.id)
+		card.remove();
+		let elementToDelete = library.filter((book) => book.id == card.id)
 		let indexOfDeletel = library.indexOf(elementToDelete[0]) 
 		library.splice(indexOfDeletel,1);
 		console.log(library);
