@@ -6,7 +6,7 @@ const addbtn = document.querySelector("#validate");
 const title_detail = document.querySelector(".title_detail");
 const author_detail = document.querySelector(".author_detail");
 const id_detail = document.querySelector(".id");
-
+const searchbar = document.querySelector(".searchbar");
 
 addbtn.addEventListener("click", (event) => form_validation(event)); 
 
@@ -26,7 +26,7 @@ let index = 0;
 
 function addToLibrary(book){
 	library.push(book);
-	reloadDisplay();
+	reloadDisplay(library);
 }
 
 function createCard(book){
@@ -125,12 +125,12 @@ function displayDetails(){
 		}
 }
 
-function reloadDisplay(){
+function reloadDisplay(lib){
 	while (cardzone.firstChild){
 		cardzone.removeChild(cardzone.firstChild);	
 	}
 	// we iterate over library and create a card for each
-	library.forEach(book => createCard(book)
+	lib.forEach(book => createCard(book)
 	);
 }
 
@@ -158,7 +158,23 @@ function form_validation(e){
 	e.preventDefault();
 }
 
+function searchBook(){
+	console.log(searchbar.value);
+	if (searchbar.value !== ""){
+		const filteredbook =  library.filter(book => book.name.includes(searchbar.value));
+		reloadDisplay(filteredbook);
+		return true;
+	}
+	reloadDisplay(library);
+}
+
 const book1 = new Book("LOTR", "Tolkien", "Men discussing about a ring", 898, true);
-const book2 = new Book("LOTR2", "Tolkien", "Men discussing about a ring", 1000, false);
+const book2 = new Book("GOT", "Tolkien", "Men discussing about a ring", 1000, false);
+const book3 = new Book("eragon", "Tolkien", "Men discussing about a ring", 1000, false);
+const book4 = new Book("48 laws of power", "Tolkien", "Men discussing about a ring", 1000, false);
+const book5 = new Book("A song of ice and fire", "Tolkien", "Men discussing about a ring", 1000, false);
 addToLibrary(book1);
 addToLibrary(book2);
+addToLibrary(book3);
+addToLibrary(book4);
+addToLibrary(book5);

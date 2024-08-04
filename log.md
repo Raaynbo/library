@@ -64,3 +64,9 @@ modified card creation and delete event, Had to make a function to find a specif
 modified book definition to handle tot_page and reading status
 whenever a book is read the associated card will have a green border on the left side 
 UPDATE : while writing this, I found out I do not need to find the parent Node, since the card creation and EventListener are done in the same scope for now
+
+# 2024-08-04 - 10.00pm
+
+I created a search bar to easily navigate and find any book. Made a js function to operate on change. when the search bar is empty it will use the unfiltered lib otherwise it will search for any bookname or author including user's input
+
+
