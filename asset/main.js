@@ -161,18 +161,25 @@ function form_validation(e){
 function searchBook(){
 	console.log(searchbar.value);
 	if (searchbar.value !== ""){
-		const filteredbook =  library.filter(book => book.name.includes(searchbar.value));
+		const filteredbook =  library.filter(book => bookfilter(book, searchbar.value)  );
+		console.table(filteredbook);
 		reloadDisplay(filteredbook);
 		return true;
 	}
 	reloadDisplay(library);
 }
 
+function bookfilter(book, input){
+	if (book.name.toLowerCase().includes(input.toLowerCase()) || book.author.toLowerCase().includes(input.toLowerCase())){
+		return book;
+	}
+}
+
 const book1 = new Book("LOTR", "Tolkien", "Men discussing about a ring", 898, true);
 const book2 = new Book("GOT", "Tolkien", "Men discussing about a ring", 1000, false);
-const book3 = new Book("eragon", "Tolkien", "Men discussing about a ring", 1000, false);
-const book4 = new Book("48 laws of power", "Tolkien", "Men discussing about a ring", 1000, false);
-const book5 = new Book("A song of ice and fire", "Tolkien", "Men discussing about a ring", 1000, false);
+const book3 = new Book("eragon", "magnoe", "Men discussing about a ring", 1000, false);
+const book4 = new Book("48 laws of power", "Silter", "Men discussing about a ring", 1000, false);
+const book5 = new Book("A song of ice and fire", "Terk", "Men discussing about a ring", 1000, false);
 addToLibrary(book1);
 addToLibrary(book2);
 addToLibrary(book3);
