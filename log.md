@@ -73,3 +73,6 @@ I created a search bar to easily navigate and find any book. Made a js function 
 
 Just worked on: hover anim for the add book button and modified event type for search as the user type in the searchbar
 I don't really like the details area and I decided to disable it. I'll use this specific zone to edit card, since I don't feel like another modal would look nice.
+
+            - 6.23pm
+Read status can be modified 

@@ -31,6 +31,7 @@ function addToLibrary(book){
 }
 
 function createCard(book){
+	// CARD ELEMENT CREATION
 		const card = document.createElement("div");
 		const card_title = document.createElement("span")
 		const card_content = document.createElement("div");
@@ -38,9 +39,14 @@ function createCard(book){
 		const bookdesc = document.createElement("div");
 		const card_action_container = document.createElement("div");
 		const card_action1 = document.createElement("span");
+		const card_action2 = document.createElement("span");
+
+	// ADDING CONTENT 
 		card_title.textContent = book.name + " - " + book.author;
 		bookdesc.textContent = book.desc;
 		bookpage.textContent = "total pages: " + book.page;
+
+	// CLASS ATTriBUTION
 		card_title.className = "card_title";
 		card.className = "card";
 		if (book.isRead === true){
@@ -48,83 +54,81 @@ function createCard(book){
 		}
 		card_content.className = "card_content";
 		card_action1.className = "card_action";
+		card_action2.className = "card_action";
 		card_action_container.className = "card_action_container";
 
 
-		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+	// SVG ICON CREATION
+		var svg_a1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var path_a1 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
 
-		svg.setAttribute("aria-hidden","true");
-		svg.setAttribute('viewbox', '0 0 24 24');
-		svg.setAttribute('width', '24px');
-		svg.setAttribute('height', '24px');
+		svg_a1.setAttribute("aria-hidden","true");
+		svg_a1.setAttribute('viewbox', '0 0 24 24');
+		svg_a1.setAttribute('width', '24px');
+		svg_a1.setAttribute('height', '24px');
 
 
-		path.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z');
-		path.setAttribute('fill', '#2962ff');
+		path_a1.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z');
+		path_a1.setAttribute('fill', '#2962ff');
+	
+		var svg_a2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var path_a2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
 
-		svg.appendChild(path);
-		card_action1.appendChild(svg);
-		
+		svg_a2.setAttribute("aria-hidden","true");
+		svg_a2.setAttribute('viewbox', '0 0 24 24');
+		svg_a2.setAttribute('width', '24px');
+		svg_a2.setAttribute('height', '24px');
+
+
+		path_a2.setAttribute('d', 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z');
+		if (book.isRead === true){
+			path_a2.setAttribute('fill', '#00ff24');
+		}
+		else{
+			path_a2.setAttribute('fill', '#ff2400');
+	}
+
+
+
+
+	// ADDIng EVENT TO ELEMENT 
 	card_action1.addEventListener("click", (e) => {
 		card.remove();
 		let elementToDelete = library.filter((book) => book.id == card.id)
 		let indexOfDeletel = library.indexOf(elementToDelete[0]) 
 		library.splice(indexOfDeletel,1);
 		console.log(library);
-		closeDetails();
+	});
+	card_action2.addEventListener("click", (e) => {
+		if (book.isRead !== true){
+			book.isRead = true;
+		}
+		else{
+			book.isRead = false;
+		}
+		reloadDisplay(library);
+
 	});
 
+	// ADDING ELEMENT TO DOM 
+		svg_a1.appendChild(path_a1);
+		card_action1.appendChild(svg_a1);
+		
+		svg_a2.appendChild(path_a2);
+		card_action2.appendChild(svg_a2);
 		card_content.appendChild(bookdesc);
 		card_content.appendChild(bookpage);
 		card.setAttribute("id", book.id);
 		card_action_container.appendChild(card_action1);
+		card_action_container.appendChild(card_action2);
 		card.appendChild(card_title);
 		card.appendChild(card_content);
 		card.appendChild(card_action_container);
 
 		cardzone.appendChild(card);
-
-	card.addEventListener("click", (event) => {
-		if(event.target == card_action1 || event.target == svg|| event.target == path){
-			return false;
-		}
-		let temp = library.find(book => {return book.id == card.id});
-		if(id_detail.textContent != card.id){
-			title_detail.textContent = temp.name;
-			author_detail.textContent = temp.author;
-			id_detail.textContent = card.id;
-			//displayDetails();
-			return true;
-		}else{
-			//closeDetails();
-			title_detail.textContent = "";
-			author_detail.textContent = "";
-			id_detail.textContent = "";
-		}
-	});
 }
 
 
-function findParent(targetEl, childEl){
-	let actualEl = childEl;
-	while(actualEl != targetEl){
-		actualEl = actualEl.parentNode;
-	}
-	return actualEl;
-}
-
-//function closeDetails(){
-//		if(infozone.classList.contains("details")){
-//			infozone.classList.remove("details");		
-//		}
-//}
-//
-//function displayDetails(){
-//		if (!infozone.classList.contains("details")){
-//			infozone.classList.add("details");
-//		}
-//}
 
 function reloadDisplay(lib){
 	while (cardzone.firstChild){
