@@ -69,4 +69,7 @@ UPDATE : while writing this, I found out I do not need to find the parent Node, 
 
 I created a search bar to easily navigate and find any book. Made a js function to operate on change. when the search bar is empty it will use the unfiltered lib otherwise it will search for any bookname or author including user's input
 
+# 2024-08-05 - 5.43pm
 
+Just worked on: hover anim for the add book button and modified event type for search as the user type in the searchbar
+I don't really like the details area and I decided to disable it. I'll use this specific zone to edit card, since I don't feel like another modal would look nice.

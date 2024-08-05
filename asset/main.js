@@ -9,6 +9,7 @@ const id_detail = document.querySelector(".id");
 const searchbar = document.querySelector(".searchbar");
 
 addbtn.addEventListener("click", (event) => form_validation(event)); 
+searchbar.addEventListener("input", (event) => searchBook(event));
 
 function Book(name, author, desc, pagenum, read){
 	this.name = name;
@@ -93,10 +94,10 @@ function createCard(book){
 			title_detail.textContent = temp.name;
 			author_detail.textContent = temp.author;
 			id_detail.textContent = card.id;
-			displayDetails();
+			//displayDetails();
 			return true;
 		}else{
-			closeDetails();
+			//closeDetails();
 			title_detail.textContent = "";
 			author_detail.textContent = "";
 			id_detail.textContent = "";
@@ -113,17 +114,17 @@ function findParent(targetEl, childEl){
 	return actualEl;
 }
 
-function closeDetails(){
-		if(infozone.classList.contains("details")){
-			infozone.classList.remove("details");		
-		}
-}
-
-function displayDetails(){
-		if (!infozone.classList.contains("details")){
-			infozone.classList.add("details");
-		}
-}
+//function closeDetails(){
+//		if(infozone.classList.contains("details")){
+//			infozone.classList.remove("details");		
+//		}
+//}
+//
+//function displayDetails(){
+//		if (!infozone.classList.contains("details")){
+//			infozone.classList.add("details");
+//		}
+//}
 
 function reloadDisplay(lib){
 	while (cardzone.firstChild){
@@ -158,8 +159,8 @@ function form_validation(e){
 	e.preventDefault();
 }
 
-function searchBook(){
-	console.log(searchbar.value);
+function searchBook(event){
+	console.log(event.target.value);
 	if (searchbar.value !== ""){
 		const filteredbook =  library.filter(book => bookfilter(book, searchbar.value)  );
 		console.table(filteredbook);
