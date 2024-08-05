@@ -1,5 +1,3 @@
-console.log("library in js");
-
 const cardzone = document.querySelector("#cardzone");
 const infozone = document.querySelector("#infozone");
 const addbtn = document.querySelector("#validate");
@@ -32,14 +30,14 @@ function addToLibrary(book){
 
 function createCard(book){
 	// CARD ELEMENT CREATION
-		var card = document.createElement("div");
-		var card_title = document.createElement("span")
-		var card_content = document.createElement("div");
-		var bookpage = document.createElement("div");
-		var bookdesc = document.createElement("div");
-		var card_action_container = document.createElement("div");
-		var card_action1 = document.createElement("span");
-		var card_action2 = document.createElement("span");
+		const card = document.createElement("div");
+		const card_title = document.createElement("span")
+		const card_content = document.createElement("div");
+		const bookpage = document.createElement("div");
+		const bookdesc = document.createElement("div");
+		const card_action_container = document.createElement("div");
+		const card_action1 = document.createElement("span");
+		const card_action2 = document.createElement("span");
 
 	// ADDING CONTENT 
 		card_title.textContent = book.name + " - " + book.author;
@@ -59,8 +57,8 @@ function createCard(book){
 
 
 	// SVG ICON CREATION
-		var svg_a1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		var path_a1 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+		const svg_a1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		const path_a1 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
 
 		svg_a1.setAttribute("aria-hidden","true");
 		svg_a1.setAttribute('viewbox', '0 0 24 24');
@@ -71,8 +69,8 @@ function createCard(book){
 		path_a1.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z');
 		path_a1.setAttribute('fill', '#2962ff');
 	
-		var svg_a2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		var path_a2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+		const svg_a2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		const path_a2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
 
 		svg_a2.setAttribute("aria-hidden","true");
 		svg_a2.setAttribute('viewbox', '0 0 24 24');
@@ -94,8 +92,8 @@ function createCard(book){
 	// ADDIng EVENT TO ELEMENT 
 	card_action1.addEventListener("click", (e) => {
 		card.remove();
-		var elementToDelete = library.filter((book) => book.id == card.id)
-		var indexOfDeletel = library.indexOf(elementToDelete[0]) 
+		const elementToDelete = library.filter((book) => book.id == card.id)
+		const indexOfDeletel = library.indexOf(elementToDelete[0]) 
 		library.splice(indexOfDeletel,1);
 	});
 	card_action2.addEventListener("click", (e) => {
@@ -139,7 +137,7 @@ function reloadDisplay(lib){
 }
 
 function openModal(){
-	var modal = document.querySelector("dialog");
+	const modal = document.querySelector("dialog");
 	modal.showModal();
 
 }
@@ -153,7 +151,6 @@ function form_validation(e){
 	const form = document.querySelector("form");
 	const modal = document.querySelector("dialog");
 	if ( title_in == "" && author_in == "" && desc_in == "" && page_in ==""){
-		console.log("fill the form firsrt")
 		return true;
 	}
 	addToLibrary(new Book(title_in, author_in, desc_in, page_in, read_in));
@@ -163,10 +160,8 @@ function form_validation(e){
 }
 
 function searchBook(event){
-	console.log(event.target.value);
 	if (searchbar.value !== ""){
 		const filteredbook =  library.filter(book => bookfilter(book, searchbar.value)  );
-		console.table(filteredbook);
 		reloadDisplay(filteredbook);
 		return true;
 	}
