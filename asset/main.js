@@ -32,14 +32,14 @@ function addToLibrary(book){
 
 function createCard(book){
 	// CARD ELEMENT CREATION
-		const card = document.createElement("div");
-		const card_title = document.createElement("span")
-		const card_content = document.createElement("div");
-		const bookpage = document.createElement("div");
-		const bookdesc = document.createElement("div");
-		const card_action_container = document.createElement("div");
-		const card_action1 = document.createElement("span");
-		const card_action2 = document.createElement("span");
+		var card = document.createElement("div");
+		var card_title = document.createElement("span")
+		var card_content = document.createElement("div");
+		var bookpage = document.createElement("div");
+		var bookdesc = document.createElement("div");
+		var card_action_container = document.createElement("div");
+		var card_action1 = document.createElement("span");
+		var card_action2 = document.createElement("span");
 
 	// ADDING CONTENT 
 		card_title.textContent = book.name + " - " + book.author;
@@ -94,10 +94,9 @@ function createCard(book){
 	// ADDIng EVENT TO ELEMENT 
 	card_action1.addEventListener("click", (e) => {
 		card.remove();
-		let elementToDelete = library.filter((book) => book.id == card.id)
-		let indexOfDeletel = library.indexOf(elementToDelete[0]) 
+		var elementToDelete = library.filter((book) => book.id == card.id)
+		var indexOfDeletel = library.indexOf(elementToDelete[0]) 
 		library.splice(indexOfDeletel,1);
-		console.log(library);
 	});
 	card_action2.addEventListener("click", (e) => {
 		if (book.isRead !== true){
@@ -140,7 +139,7 @@ function reloadDisplay(lib){
 }
 
 function openModal(){
-	const modal = document.querySelector("dialog");
+	var modal = document.querySelector("dialog");
 	modal.showModal();
 
 }
