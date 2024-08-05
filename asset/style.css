@@ -96,9 +96,11 @@ span {
 .modal {
 	position: absolute;
 	top: 15%;
-	left: 5%;
-	width: 90%;
-	height: 70%;
+	left: 40%;
+	width: max-content;
+	height: fit-content;
+	overflow-x: hidden;
+	border-radius: 5%;
 	border: 0px;
 	background-color: white;
 }
@@ -136,11 +138,27 @@ dialog[open] {
 
 .form_content {
 	display: flex;
-	padding: 1rem;
 	flex-direction: column;
 	row-gap: 1rem;
 }
 
+.form_content label {
+	padding: 0 auto;
+	margin: 1rem;
+}
+
+.form_title {
+	background-color: blue;
+	width: 100%;
+	margin: 0;
+	padding: 1rem;
+	color: white;
+}
+
 .read {
 	border-left: 0.5rem solid green;
+}
+
+#validate {
+	margin: 1rem;
 }
